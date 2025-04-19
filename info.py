@@ -67,8 +67,8 @@ TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/Bots_Office")
 TUTORIAL_3 = environ.get("TUTORIAL_3", "https://t.me/Bots_Office")
 
 # Verification (Must Fill All Veriables. Else You Got Error
-SHORTENER_API = environ.get("SHORTENER_API", "f12bdd3c5c118fdc7ab6dd26bbf360968923f379")
-SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "tnshort.net")
+SHORTENER_API = environ.get("SHORTENER_API", "91e92efbec3cae6257e20c24449b1adadb903677")
+SHORTENER_WEBSITE = environ.get("SHORTENER_WEBSITE", "linkmonetizer.in")
 
 SHORTENER_API2 = environ.get("SHORTENER_API2", "69156e23ec96994c303b8a64be1244bd635d5f30")
 SHORTENER_WEBSITE2 = environ.get("SHORTENER_WEBSITE2", "adrinolinks.in")

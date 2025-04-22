@@ -45,8 +45,8 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'SilentXBotz_files')
 
 # If MULTIPLE_DB Is True Then Fill DATABASE_URI2 Value Else You Will Get Error.
-MULTIPLE_DB = is_enabled(os.environ.get('MULTIPLE_DB', "False"), False) # Type True For Turn On MULTIPLE DB FUNTION 
-DATABASE_URI2 = environ.get('DATABASE_URI2', "")
+MULTIPLE_DB = is_enabled(os.environ.get('MULTIPLE_DB', "True"), True) # Type True For Turn On MULTIPLE DB FUNTION 
+DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://database2:database2@cluster0.p4ztr4z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/SG_Movies1')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Bots_Office')
@@ -112,7 +112,7 @@ LANGUAGES = ["malayalam", "", "tamil", "", "english", "", "hindi", "", "telugu",
 QUALITIES = ["360P", "", "480P", "", "720P", "", "1080P", "", "1440P", "", "2160P", ""]
 SEASONS = ["s01" , "s02" , "s03" , "s04", "s05" , "s06" , "s07" , "s08" , "s09" , "s10"]
 
-STREAM_MODE = bool(environ.get('STREAM_MODE', True))
+STREAM_MODE = bool(environ.get('STREAM_MODE', False))
 
 #Dont Make Any Changes Here. Creat A Veriable Name "FQDN" In Your Deploying Plartform And Put App Url
 NO_PORT = bool(environ.get('NO_PORT', False))

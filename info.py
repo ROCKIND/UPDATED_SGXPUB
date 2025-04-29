@@ -51,7 +51,7 @@ DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://database2:database2@
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/SG_Movies1')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Bots_Office')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/Developer_DM_Bot')
-UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/+gjED4EKYbe43ZDY1') ###############################################################################
+UPDATE_CHANNEL_LNK = environ.get('UPDATE_CHANNEL_LNK', 'https://t.me/Bots_Office') ###############################################################################
 
 #Force Subscription Channel (Put Same Channel Id In Both Veriables)
 AUTH_CHANNEL = int(environ.get('AUTH_CHANNEL', '-1002371763393')) 
@@ -60,7 +60,7 @@ AUTH_REQ_CHANNEL = int(environ.get('AUTH_REQ_CHANNEL', '-1002371763393'))
 IS_VERIFY = is_enabled('IS_VERIFY', True)
 LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1002546986130')) #Verification Channel Id 
 LOG_API_CHANNEL = int(environ.get('LOG_API_CHANNEL', '-1002546986130')) #If Anyone Set Your Bot In Any Group And Set Shortner In That Group Then In This Channel The All Details Come
-VERIFY_IMG = environ.get("VERIFY_IMG", "https://telegra.ph/file/9ecc5d6e4df5b83424896.jpg")
+VERIFY_IMG = environ.get("VERIFY_IMG", "https://graph.org/file/24471c632dc8c712b472e-fffa677370b67c1f9d.jpg")
 
 TUTORIAL = environ.get("TUTORIAL", "https://t.me/Bots_Office")
 TUTORIAL_2 = environ.get("TUTORIAL_2", "https://t.me/Bots_Office")
@@ -92,7 +92,7 @@ P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "False")), False)
 AUTO_FFILTER = is_enabled((environ.get('AUTO_FFILTER', "True")), True)
 AUTO_DELETE = is_enabled((environ.get('AUTO_DELETE', "True")), True)
-DELETE_TIME = int(environ.get("DELETE_TIME", "300"))  
+DELETE_TIME = int(environ.get("DELETE_TIME", "900"))  
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "False")), False)
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)

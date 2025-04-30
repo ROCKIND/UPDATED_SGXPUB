@@ -86,7 +86,7 @@ async def SilentXBotz_start():
     await SilentX.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.B_LINK, today, time))
     app = web.AppRunner(await web_server())
     await app.setup()
-    bind_address = "0.0.0.0"
+    bind_address = "compatible-sena-wmel0-7-30-a-2i-75860bc5.koyeb.app/"
     await web.TCPSite(app, bind_address, PORT).start()
     SilentX.loop.create_task(keep_alive())
     await idle()

@@ -11,8 +11,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 CAPTION_LANGUAGES = ["Bhojpuri", "Hindi", "Bengali", "Tamil", "English", "Bangla", "Telugu", "Malayalam", "Kannada", "Marathi", "Punjabi", "Bengoli", "Gujrati", "Korean", "Gujarati", "Spanish", "French", "German", "Chinese", "Arabic", "Portuguese", "Russian", "Japanese", "Odia", "Assamese", "Urdu"]
 
 notified_movies = set()
-user_reactions = {}
-reaction_counts = {}
 
 media_filter = filters.document | filters.video | filters.audio
 
@@ -58,60 +56,18 @@ async def send_movie_update(bot, file_name, caption):
         poster = await fetch_movie_poster(title, year)        
         search_movie = file_name.replace(" ", "-")
         unique_id = generate_unique_id(search_movie)
-        reaction_counts[unique_id] = {"❤️": 0, "👍": 0, "👎": 0, "🔥": 0}
-        user_reactions[unique_id] = {}
-        caption_template = "<b>#Added ✅\n\nName: {}\nQuality: {}\nAudio: {}</b>"
-        full_caption = caption_template.format(file_name, quality, language)
+        caption_template = f"<b><blockquote>#ADDED ✅</blockquote>\n\nɴᴀᴍᴇ: {file_name} #{kind}\nǫᴜᴀʟɪᴛʏ: {quality}\nᴀᴜᴅɪᴏ: {language}</b>"
+        full_caption = f"<b><blockquote>#ADDED ✅</blockquote>\n\nɴᴀᴍᴇ: {file_name} \nǫᴜᴀʟɪᴛʏ: {quality}\nᴀᴜᴅɪᴏ: {language}</b>"
         if kind:
-            full_caption += f"\n<b>#{kind}</b>"
+            full_caption = caption_template
         buttons = [[
-            InlineKeyboardButton(f"❤️ {reaction_counts[unique_id]['❤️']}", callback_data=f"r_{unique_id}_{search_movie}_heart"),                
-            InlineKeyboardButton(f"👍 {reaction_counts[unique_id]['👍']}", callback_data=f"r_{unique_id}_{search_movie}_like"),
-            InlineKeyboardButton(f"👎 {reaction_counts[unique_id]['👎']}", callback_data=f"r_{unique_id}_{search_movie}_dislike"),
-            InlineKeyboardButton(f"🔥 {reaction_counts[unique_id]['🔥']}", callback_data=f"r_{unique_id}_{search_movie}_fire")
-        ],[
-            InlineKeyboardButton('Get File', url=f'https://telegram.me/{temp.U_NAME}?start=getfile-{search_movie}')
+            InlineKeyboardButton('❗️ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ɢᴇᴛ ғɪʟᴇ ❗️', url=f'https://telegram.me/{temp.U_NAME}?start=getfile-{search_movie}')
         ]]
         image_url = poster or "https://te.legra.ph/file/88d845b4f8a024a71465d.jpg"
         await bot.send_photo(chat_id=MOVIE_UPDATE_CHANNEL, photo=image_url, caption=full_caption, reply_markup=InlineKeyboardMarkup(buttons))    
+        await bot.send_sticker(chat_id=MOVIE_UPDATE_CHANNEL, sticker="CAACAgUAAxkBAAKuimgjtuY3THj2itRUOGrDS_q-Y5NcAAI9AANDc8kSqGMX96bLjWE2BA")
     except Exception as e:
         print(f"Error in send_movie_update: {e}")
-
-@Client.on_callback_query(filters.regex(r"^r_"))
-async def reaction_handler(client, query):
-    try:
-        data = query.data.split("_")
-        if len(data) != 4:
-            return        
-        unique_id = data[1]
-        search_movie = data[2]
-        new_reaction = data[3]
-        user_id = query.from_user.id
-        emoji_map = {"heart": "❤️", "like": "👍", "dislike": "👎", "fire": "🔥"}
-        if new_reaction not in emoji_map:
-            return
-        new_emoji = emoji_map[new_reaction]       
-        if unique_id not in reaction_counts:
-            return
-        if user_id in user_reactions[unique_id]:
-            old_emoji = user_reactions[unique_id][user_id]
-            if old_emoji == new_emoji:
-                return 
-            else:
-                reaction_counts[unique_id][old_emoji] -= 1
-        user_reactions[unique_id][user_id] = new_emoji
-        reaction_counts[unique_id][new_emoji] += 1
-        updated_buttons = [[
-            InlineKeyboardButton(f"❤️ {reaction_counts[unique_id]['❤️']}", callback_data=f"r_{unique_id}_{search_movie}_heart"),                
-            InlineKeyboardButton(f"👍 {reaction_counts[unique_id]['👍']}", callback_data=f"r_{unique_id}_{search_movie}_like"),
-            InlineKeyboardButton(f"👎 {reaction_counts[unique_id]['👎']}", callback_data=f"r_{unique_id}_{search_movie}_dislike"),
-            InlineKeyboardButton(f"🔥 {reaction_counts[unique_id]['🔥']}", callback_data=f"r_{unique_id}_{search_movie}_fire")
-        ],[
-            InlineKeyboardButton('Get File', url=f'https://telegram.me/{temp.U_NAME}?start=getfile-{search_movie}')
-        ]]
-        await query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(updated_buttons))
-    except Exception as e:
-        print("Reaction error:", e)
         
 async def get_imdb_details(name):
     try:

@@ -29,6 +29,7 @@ async def media(bot, message):
     try:  
         if success and silentxbotz == 1 and await get_status(bot.me.id):            
             await send_movie_update(bot, file_name=media.file_name, caption=media.caption)
+            await bot.send_sticker(chat_id=MOVIE_UPDATE_CHANNEL, sticker="CAACAgUAAxkBAAKuimgjtuY3THj2itRUOGrDS_q-Y5NcAAI9AANDc8kSqGMX96bLjWE2BA")
     except Exception as e:
         print(f"Error In Movie Update - {e}")
         pass
@@ -65,7 +66,6 @@ async def send_movie_update(bot, file_name, caption):
         ]]
         image_url = poster or "https://te.legra.ph/file/88d845b4f8a024a71465d.jpg"
         await bot.send_photo(chat_id=MOVIE_UPDATE_CHANNEL, photo=image_url, caption=full_caption, reply_markup=InlineKeyboardMarkup(buttons))    
-        await bot.send_sticker(chat_id=MOVIE_UPDATE_CHANNEL, sticker="CAACAgUAAxkBAAKuimgjtuY3THj2itRUOGrDS_q-Y5NcAAI9AANDc8kSqGMX96bLjWE2BA")
     except Exception as e:
         print(f"Error in send_movie_update: {e}")
         
